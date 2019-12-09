@@ -17,6 +17,7 @@ class App extends Component {
 
     this.state = {
       petList: pets,
+      filteredPetList: pets,
       currentPet: undefined,
     };
     console.log(pets);
@@ -49,6 +50,21 @@ class App extends Component {
 
   onSearch = (searchTerm) => {
     console.log(searchTerm);
+
+    // reset petList
+    let filteredPetList = this.state.petList
+
+    // make RegExp from search term
+    const regexConstructor = new RegExp(searchTerm.toLowerCase());
+
+    // filter petList based on search term
+    filteredPetList = filteredPetList.filter((pet) => regexConstructor.test(pet.name.toLowerCase())
+                                                  || regexConstructor.test(pet.species.toLowerCase())
+                                                  || regexConstructor.test(pet.about.toLowerCase())
+                                                  || regexConstructor.test(pet.location.toLowerCase()) )
+
+    // overwrite current filtered pet list
+    this.setState({ filteredPetList: filteredPetList });
   }
 
   render () {
@@ -69,7 +85,7 @@ class App extends Component {
         <section className="pet-list-wrapper">
           { /* Wave 1:  Where PetList should appear */}
           <PetList 
-            pets={this.state.petList} 
+            pets={this.state.filteredPetList} 
             onSelectPet={this.onSelectPet} 
             onRemovePet={this.onRemovePet} 
             addPet={this.addPet}
