@@ -29,8 +29,18 @@ class App extends Component {
     this.setState( { currentPet: foundPet } );
   }
 
+  onRemovePet = (petId) => {
+    // remove pet with given id from list
+    const filteredPets = this.state.petList.filter(pet => pet.id !== petId);
+    // assign new list back to state
+    this.setState( { petList: filteredPets } );
+    // set current pet to undefined
+    this.setState( { currentPet: undefined } );
+  }
+
   render () {
     const { currentPet } = this.state;
+    console.log(currentPet);
 
     return (
       <main className="App">
@@ -45,7 +55,11 @@ class App extends Component {
           {currentPet ? <PetDetails currentPet={currentPet} /> : ""}
         <section className="pet-list-wrapper">
           { /* Wave 1:  Where PetList should appear */}
-          <PetList pets={this.state.petList} onSelectPet={this.onSelectPet} />
+          <PetList 
+            pets={this.state.petList} 
+            onSelectPet={this.onSelectPet} 
+            onRemovePet={this.onRemovePet} 
+          />
         </section>
         <section className="new-pet-form-wrapper">
           { /* Wave 3:  Where NewPetForm should appear */}

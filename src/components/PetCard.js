@@ -12,6 +12,9 @@ const PetCard = (props) => {
   const onSelectButtonClick = () => {
     props.onSelectPet(props.id);
   }
+  const onRemoveButtonClick = () => {
+    props.onRemovePet(props.id);
+  }
   return (
     <div className="card pet-card">
 
@@ -28,6 +31,7 @@ const PetCard = (props) => {
           type="button"
           className="btn btn-danger pet-card--remove-btn"
           aria-label="Remove"
+          onClick={onRemoveButtonClick}
         >
           Remove
         </button>
@@ -48,7 +52,8 @@ PetCard.propTypes = {
   species: PropTypes.string.isRequired,
   about: PropTypes.string,
   location: PropTypes.string,
-  onSelectPet: PropTypes.func.isRequired
+  onSelectPet: PropTypes.func.isRequired,
+  onRemovePet: PropTypes.func.isRequired
 }
 
 export default PetCard;
