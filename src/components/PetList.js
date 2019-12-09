@@ -7,9 +7,20 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 const PetList = (props) => {
 
+  const petCardGroup = () => {
+    return props.pets.map((pet, i) => {
+      return (
+        <PetCard
+          key={i}
+          {...pet}
+        />
+      );
+    });
+  }
 
   return (
-    <div className="card-group">
+    <div className="app-card-list">
+      {petCardGroup()}
     </div>
   )
 }
