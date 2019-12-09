@@ -40,12 +40,19 @@ class App extends Component {
   }
 
   addPet = (newPet) => {
+    // assign id to the new pet
+    const petsLength = this.state.petList.length - 1;
+    const lastPet = this.state.petList[petsLength];
+    newPet.id = lastPet.id + 1;
+
     // add new pet to list
     const petList = this.state.petList;
     petList.push(newPet);
 
     // overwrite current list with new list
     this.setState({ petList });
+    // update filtered list
+    this.setState({ filteredPetList: petList });
   }
 
   onSearch = (searchTerm) => {
