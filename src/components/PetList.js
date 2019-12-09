@@ -19,7 +19,7 @@ const PetList = (props) => {
   }
 
   return (
-    <div className="app-card-list">
+    <div className="app-card-list card-group">
       {petCardGroup()}
     </div>
   )
