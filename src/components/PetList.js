@@ -13,6 +13,7 @@ const PetList = (props) => {
         <PetCard
           key={i}
           {...pet}
+          onSelectPet={props.onSelectPet}
         />
       );
     });
