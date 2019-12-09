@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import PetList from './components/PetList';
-import PetCard from './components/PetCard'
+// import PetCard from './components/PetCard'
 import PetDetails from './components/PetDetails';
 import SearchBar from './components/SearchBar';
-import NewPetForm from './components/NewPetForm';
+// import NewPetForm from './components/NewPetForm';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
@@ -38,6 +38,15 @@ class App extends Component {
     this.setState( { currentPet: undefined } );
   }
 
+  addPet = (newPet) => {
+    // add new pet to list
+    const petList = this.state.petList;
+    petList.push(newPet);
+
+    // overwrite current list with new list
+    this.setState({ petList });
+  }
+
   render () {
     const { currentPet } = this.state;
     console.log(currentPet);
@@ -59,6 +68,7 @@ class App extends Component {
             pets={this.state.petList} 
             onSelectPet={this.onSelectPet} 
             onRemovePet={this.onRemovePet} 
+            addPet={this.addPet}
           />
         </section>
         <section className="new-pet-form-wrapper">
