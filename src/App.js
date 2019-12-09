@@ -25,16 +25,17 @@ class App extends Component {
 
   onSelectPet = (petId) => {
     // find pet with given id
-    const foundPet = this.state.petList.find(pet => pet.id === petId);
+    const foundPet = this.state.filteredPetList.find(pet => pet.id === petId);
     // set current pet to identified pet
     this.setState( { currentPet: foundPet } );
   }
 
   onRemovePet = (petId) => {
     // remove pet with given id from list
-    const filteredPets = this.state.petList.filter(pet => pet.id !== petId);
+    const filteredPets = this.state.filteredPetList.filter(pet => pet.id !== petId);
     // assign new list back to state
     this.setState( { petList: filteredPets } );
+    this.setState( { filteredPetList: filteredPets } );
     // set current pet to undefined
     this.setState( { currentPet: undefined } );
   }
